@@ -3,60 +3,198 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>IVANOVA | SOVEREIGN CORE</title>
+    <title>MANLINES | COMMUNITY GATEWAY</title>
     <link rel="icon" href="ivanova-favicon.png" type="image/png">
-    <link rel="stylesheet" href="os-core.css"> 
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    <link href="https://fonts.googleapis.com/css2?family=Rajdhani:wght@500;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@200;400;700&display=swap" rel="stylesheet">
+
+    <style>
+        /* MANLINES COMMUNITY - INTEGRATED MONOCHROMATIC SUITE */
+        :root {
+            --bg-dark: #000000;
+            --text-main: #ffffff;
+            --text-dim: #888888;
+            --glass: rgba(15, 15, 15, 0.7);
+            --border: rgba(255, 255, 255, 0.05);
+            --font-grok: 'JetBrains Mono', monospace;
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+
+        body {
+            background-color: var(--bg-dark);
+            color: var(--text-main);
+            font-family: var(--font-grok);
+            height: 100vh;
+            overflow: hidden;
+            display: flex;
+            flex-direction: column;
+            position: relative;
+        }
+
+        /* 1. الخلفية الانسيابية المتحركة (Dynamic Gradient Mesh) */
+        .gradient-bg {
+            position: fixed;
+            inset: 0;
+            z-index: -2;
+            background: linear-gradient(125deg, #000000, #151515, #080808, #000000);
+            background-size: 400% 400%;
+            animation: gradientAnimation 12s ease infinite;
+        }
+
+        @keyframes gradientAnimation {
+            0% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
+        }
+
+        /* طبقة التشويش الرقمي (Grainy Look) */
+        .noise-overlay {
+            position: fixed;
+            inset: 0;
+            z-index: -1;
+            opacity: 0.04;
+            background-image: url('https://grainy-gradients.vercel.app/noise.svg');
+            pointer-events: none;
+        }
+
+        /* 2. الحاوية واللوحة الزجاجية */
+        .main-container {
+            flex: 1;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 2rem;
+            z-index: 10;
+        }
+
+        .glass-panel {
+            background: var(--glass);
+            backdrop-filter: blur(25px);
+            -webkit-backdrop-filter: blur(25px);
+            border: 1px solid var(--border);
+            padding: 4rem 3rem;
+            border-radius: 30px;
+            text-align: center;
+            max-width: 700px;
+            box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.7);
+        }
+
+        /* 3. تأثير الآلة الكاتبة (Typewriter) */
+        .typewriter-container {
+            display: inline-block;
+            margin-bottom: 2rem;
+        }
+
+        .typewriter-title {
+            font-size: clamp(1.4rem, 4vw, 2.3rem);
+            font-weight: 700;
+            letter-spacing: -1px;
+            color: #fff;
+            white-space: nowrap;
+            overflow: hidden;
+            border-right: 3px solid #fff;
+            width: 0;
+            animation: typing 3.5s steps(35, end) forwards, blink 0.8s infinite;
+        }
+
+        @keyframes typing {
+            from { width: 0; }
+            to { width: 100%; }
+        }
+
+        @keyframes blink {
+            50% { border-color: transparent; }
+        }
+
+        /* 4. النصوص */
+        .status-text {
+            font-size: 0.95rem;
+            color: var(--text-dim);
+            line-height: 1.8;
+            margin-bottom: 3.5rem;
+            font-weight: 200;
+            letter-spacing: 0.5px;
+        }
+
+        /* 5. رابط فيسبوك المطور */
+        .facebook-link {
+            display: inline-flex;
+            align-items: center;
+            gap: 15px;
+            text-decoration: none;
+            color: #fff;
+            background: rgba(255, 255, 255, 0.04);
+            padding: 14px 28px;
+            border-radius: 50px;
+            border: 1px solid var(--border);
+            transition: 0.4s cubic-bezier(0.23, 1, 0.32, 1);
+        }
+
+        .facebook-link:hover {
+            background: #fff;
+            color: #000;
+            transform: translateY(-3px) scale(1.02);
+            box-shadow: 0 10px 20px rgba(255, 255, 255, 0.1);
+        }
+
+        .icon-circle {
+            width: 32px; height: 32px;
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: 0.4s;
+        }
+
+        .facebook-link:hover .icon-circle {
+            background: #000;
+            color: #fff;
+        }
+
+        /* 6. Footer */
+        .sovereign-footer {
+            padding: 2rem;
+            text-align: center;
+            font-size: 10px;
+            letter-spacing: 4px;
+            color: #222;
+            text-transform: uppercase;
+        }
+    </style>
 </head>
-<body onclick="launchSovereignOS()"> 
-    <div class="background-overlay"></div>
+<body>
 
-    <main class="desktop-area">
-        <div class="icon-grid">
+    <div class="gradient-bg"></div>
+    <div class="noise-overlay"></div>
 
-            <div class="app-icon" onclick="window.location.href='/grosmen.html'">
-                <div class="icon-wrapper glass-effect">
-                    <i class="fas fa-satellite-dish"></i>
-                </div>
-                <span class="app-name">Grosmen</span>
+    <main class="main-container">
+        <div class="glass-panel">
+            
+            <div class="typewriter-container">
+                <h1 class="typewriter-title">Welcome to MANLINES Community</h1>
             </div>
 
-            <div class="app-icon" onclick="window.location.href='/blackwons.html'">
-                <div class="icon-wrapper glass-effect">
-                    <i class="fas fa-box-archive"></i>
-                </div>
-                <span class="app-name">Blackwons</span>
-            </div>
+            <p class="status-text">
+                Currently, the community is under maintenance. <br>
+                All official community news will be published here.
+            </p>
 
-            <div class="app-icon" onclick="window.location.href='/bacmaroc.html'">
-                <div class="icon-wrapper glass-effect">
-                    <i class="fas fa-graduation-cap"></i>
+            <a href="https://www.facebook.com/share/g/18UywU1TtU/" target="_blank" class="facebook-link">
+                <div class="icon-circle">
+                    <i class="fab fa-facebook-f"></i>
                 </div>
-                <span class="app-name">BacMaroc</span>
-            </div>
+                <span class="link-text">Community Link on Facebook</span>
+                <i class="fas fa-chevron-right" style="font-size: 10px; opacity: 0.5;"></i>
+            </a>
 
         </div>
     </main>
 
-    <footer class="taskbar glass-effect">
-        <div class="start-btn-wrapper">
-            <img src="ivanova-favicon.png" alt="Ivanova Start" class="start-icon">
-        </div>
-        <div class="active-indicator">
-            <div class="dot active"></div>
-        </div>
+    <footer class="sovereign-footer">
+        IVANOVA CROP© 2026 • MANLINES DIVISION • SECURED ACCESS
     </footer>
 
-    <script>
-        function launchSovereignOS() {
-            const doc = document.documentElement;
-            if (doc.requestFullscreen) doc.requestFullscreen();
-            else if (doc.mozRequestFullScreen) doc.mozRequestFullScreen();
-            else if (doc.webkitRequestFullscreen) doc.webkitRequestFullscreen();
-            else if (doc.msRequestFullscreen) doc.msRequestFullscreen();
-            document.body.removeAttribute('onclick');
-        }
-    </script>
 </body>
 </html>
