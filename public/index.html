@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ivanova Platform | المركز الرئيسي</title>
+    <link rel="icon" href="bacmaroc-faivcon.png" type="image/png">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;800&display=swap" rel="stylesheet">
+    <style>
+        body { background-color: #050505; color: white; font-family: 'Cairo', sans-serif; margin: 0; display: flex; flex-direction: column; min-height: 100vh; overflow-x: hidden; }
+        .glass-effect { background: rgba(255, 255, 255, 0.03); backdrop-filter: blur(10px); border-bottom: 1px solid rgba(255, 255, 255, 0.05); }
+        .main-header { display: flex; justify-content: space-between; align-items: center; padding: 15px 30px; position: sticky; top: 0; z-index: 1000; }
+        .header-logo { width: 160px; height: auto; }
+        
+        /* مربع الاختصارات */
+        .apps-menu-btn { display: grid; grid-template-columns: repeat(3, 1fr); gap: 4px; cursor: pointer; padding: 10px; }
+        .dot { width: 5px; height: 5px; background: white; border-radius: 50%; }
+        .apps-dropdown {
+            position: absolute; top: 75px; left: 20px; background: rgba(10, 10, 10, 0.98); 
+            border: 1px solid rgba(255,255,255,0.1); border-radius: 18px; padding: 25px; 
+            display: none; grid-template-columns: repeat(3, 1fr); gap: 20px; z-index: 1000;
+        }
+        .apps-dropdown.active { display: grid; }
+        .app-item { display: flex; flex-direction: column; align-items: center; text-decoration: none; color: white; font-size: 13px; padding: 15px; border-radius: 12px; transition: 0.3s; }
+        .app-item:hover { background: rgba(255,255,255,0.08); }
+        .app-item img { width: 55px; height: 55px; margin-bottom: 10px; }
+
+        /* محتوى الصيانة */
+        .maintenance-content { flex: 1; display: flex; flex-direction: column; align-items: center; justify-content: center; text-align: center; padding: 20px; }
+        .maintenance-icon { font-size: 4rem; color: #f1c40f; margin-bottom: 20px; animation: pulse 2s infinite; }
+        .gradient-text { background: linear-gradient(45deg, #fff, #888); -webkit-background-clip: text; -webkit-text-fill-color: transparent; font-size: 2rem; font-weight: 800; }
+        
+        footer { background: #0a0a0a; padding: 40px 20px; border-top: 1px solid #222; text-align: center; }
+        .footer-emails { color: #fff; margin-bottom: 10px; font-size: 0.9rem; }
+        @keyframes pulse { 0% { opacity: 1; } 50% { opacity: 0.5; } 100% { opacity: 1; } }
+    </style>
+</head>
+<body>
+    <header class="main-header glass-effect">
+        <div class="apps-menu-btn" onclick="toggleAppsMenu()">
+            <div class="dot"></div><div class="dot"></div><div class="dot"></div>
+            <div class="dot"></div><div class="dot"></div><div class="dot"></div>
+            <div class="dot"></div><div class="dot"></div><div class="dot"></div>
+        </div>
+        <div class="logo-area">
+            <img src="grosmen-fivcon.png" alt="Grosmen Logo" class="header-logo">
+        </div>
+        <div class="apps-dropdown" id="appsDropdown">
+            <a href="https://bacmaroc.ivanova.sbs" class="app-item"><img src="bacmaroc-ovcon.png"><span>Bac Maroc</span></a>
+            <a href="https://courses.ivanova.sbs" class="app-item"><img src="courses-ovcon.png"><span>Courses</span></a>
+            <a href="https://wikijobs.ivanova.sbs" class="app-item"><img src="wikijobs-ovcon.png"><span>WikiJobs</span></a>
+            <a href="https://store.ivanova.sbs" class="app-item"><img src="store-ovcon.png"><span>Store</span></a>
+            <a href="https://news.ivanova.sbs" class="app-item"><img src="news-ovcon.png"><span>News</span></a>
+        </div>
+    </header>
+
+    <div class="maintenance-content">
+        <i class="fa-solid fa-screwdriver-wrench maintenance-icon"></i>
+        <h1 class="gradient-text">هذا الموقع قيد الصيانة</h1>
+        <p style="color: #888; max-width: 500px;">نحن نعمل على تطوير الواجهة الرئيسية لتليق بمستوى إمبراطورية Ivanova. المرجو التوجه إلى الخدمات الأخرى عبر القائمة العلوية.</p>
+    </div>
+
+    <footer>
+        <div class="footer-emails">
+            دعم العملاء: support@ivanova.sbs | الإدارة العامة: ceo@ivanova.sbs
+        </div>
+        <p style="color: #555; font-size: 0.8rem;">&copy; 2026 Grosmen World & Ivanova Platform.</p>
+    </footer>
+
+    <script>
+        function toggleAppsMenu() { document.getElementById('appsDropdown').classList.toggle('active'); }
+        window.onclick = function(event) {
+            if (!event.target.matches('.apps-menu-btn') && !event.target.closest('.apps-dropdown')) {
+                document.getElementById('appsDropdown').classList.remove('active');
+            }
+        }
+    </script>
+</body>
+</html>
