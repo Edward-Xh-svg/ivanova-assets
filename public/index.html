@@ -3,151 +3,119 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Ivanova Platform | المركز الرئيسي</title>
+    <title>Grosmen World | System Root</title>
     <link rel="icon" href="grosmen-inses.png" type="image/png">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
-    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;900&family=Reenie+Beanie&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@200;400;900&family=Reenie+Beanie&display=swap" rel="stylesheet">
     
     <style>
         :root {
-            --bg-base: #050505; /* لون قريب من الأسود، ليس سواداً مطلقاً */
-            --nebula-1: rgba(100, 10, 100, 0.08); /* بنفسجي خافت جداً */
-            --nebula-2: rgba(10, 50, 100, 0.08);  /* أزرق خافت جداً */
-            --text-glow: rgba(255, 255, 255, 0.2);
+            --pure-black: #000000;
+            --near-black: #010101; /* أسود شبه مطلق */
+            --subtle-void: rgba(255, 255, 255, 0.02);
         }
 
-        * { box-sizing: border-box; }
-        
         body, html {
             margin: 0; padding: 0; width: 100%; height: 100%;
-            background-color: var(--bg-base);
+            background-color: var(--pure-black);
             font-family: 'Cairo', sans-serif;
             overflow: hidden; color: white;
-            /* خلفية متموجة وداكنة (بين المجرات) */
+            /* خلفية متموجة بـ "سواد الدخان" - غير مرئية تقريباً */
             background: 
-                radial-gradient(circle at 10% 20%, var(--nebula-1) 0%, transparent 50%),
-                radial-gradient(circle at 80% 80%, var(--nebula-2) 0%, transparent 50%);
+                radial-gradient(circle at 30% 30%, #030305 0%, var(--pure-black) 60%),
+                radial-gradient(circle at 70% 70%, #050205 0%, var(--pure-black) 60%);
             background-size: 200% 200%;
-            animation: nebulaShift 25s ease-in-out infinite;
+            animation: deepVoid 30s ease infinite;
         }
 
-        @keyframes nebulaShift {
+        @keyframes deepVoid {
             0% { background-position: 0% 0%; }
             50% { background-position: 100% 100%; }
             100% { background-position: 0% 0%; }
         }
 
-        /* --- الهيدر و الـ Dropdown --- */
+        /* إصلاح الهيدر والقائمة لضمان عدم التعليق */
         .main-header {
             position: fixed; top: 0; width: 100%;
             display: flex; justify-content: space-between; align-items: center;
-            padding: 15px 40px; z-index: 1000; /* أعلى z-index */
+            padding: 20px 40px; z-index: 2000;
         }
-        .header-logo { width: 130px; opacity: 0.5; filter: grayscale(1); transition: 0.5s; }
-        .header-logo:hover { opacity: 1; filter: grayscale(0); }
 
-        .apps-menu-btn { display: grid; grid-template-columns: repeat(3, 1fr); gap: 4px; cursor: pointer; padding: 10px; }
-        .dot { width: 4px; height: 4px; background: white; border-radius: 50%; opacity: 0.5; transition: 0.3s; }
-        .apps-menu-btn:hover .dot { opacity: 1; box-shadow: 0 0 10px white; }
+        .apps-menu-btn { display: grid; grid-template-columns: repeat(3, 1fr); gap: 4px; cursor: pointer; }
+        .dot { width: 4px; height: 4px; background: white; border-radius: 50%; opacity: 0.2; }
 
-        /* حل مشكلة التعليق: الـ Dropdown عائم */
         .apps-dropdown {
-            position: absolute; 
-            top: 70px; /* المسافة من الهيدر */
-            right: 40px; /* تفتح تحت الزر مباشرة */
-            background: rgba(10, 10, 10, 0.96); /* أسود شفاف داكن */
-            backdrop-filter: blur(30px);
-            border: 1px solid rgba(255,255,255,0.05);
-            border-radius: 15px; 
-            padding: 20px; 
-            display: none; /* مخفي افتراضياً */
-            grid-template-columns: repeat(3, 1fr); gap: 15px;
-            box-shadow: 0 15px 40px rgba(0,0,0,1);
-            width: 250px; /* عرض ثابت لكي لا "تفرقع" الشاشة */
-            z-index: 1001; /* فوق كل شيء */
+            position: absolute; top: 70px; right: 40px;
+            background: rgba(0, 0, 0, 0.98);
+            border: 1px solid rgba(255,255,255,0.03);
+            border-radius: 12px; padding: 15px; 
+            display: none; grid-template-columns: repeat(3, 1fr); gap: 12px;
+            width: 220px; z-index: 2001;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.8);
         }
-        .apps-dropdown.active { display: grid; animation: fadeInDropdown 0.3s ease-out; }
+        .apps-dropdown.active { display: grid; }
+        .app-item { display: flex; flex-direction: column; align-items: center; text-decoration: none; color: white; opacity: 0.5; transition: 0.3s; }
+        .app-item:hover { opacity: 1; transform: scale(1.05); }
+        .app-item img { width: 32px; height: 32px; margin-bottom: 5px; }
+        .app-item span { font-size: 9px; letter-spacing: 1px; }
 
-        .app-item { display: flex; flex-direction: column; align-items: center; text-decoration: none; color: white; transition: 0.3s; }
-        .app-item:hover { transform: translateY(-3px); opacity: 0.8; }
-        .app-item img { width: 40px; height: 40px; margin-bottom: 8px; object-fit: contain; }
-        .app-item span { font-size: 10px; font-weight: 600; text-transform: uppercase; }
-
-        /* --- ستارة التفعيل --- */
-        .portal-overlay {
-            position: fixed; inset: 0; background: #000; z-index: 9999;
-            display: flex; flex-direction: column; align-items: center; justify-content: center;
-            transition: 2s cubic-bezier(0.7, 0, 0.3, 1);
-        }
-        .portal-overlay.hidden { opacity: 0; visibility: hidden; transform: scale(1.15) translateY(-50px); filter: blur(30px); }
-
-        .portal-button {
-            width: 70px; height: 70px; display: flex; align-items: center; justify-content: center;
-            cursor: pointer; border-radius: 50%;
-            background: rgba(255,255,255,0.01); border: 1px solid rgba(255,255,255,0.05);
-            transition: 0.3s;
-        }
-        .portal-button::after {
-            content: ''; position: absolute; inset: -5px;
-            border: 1px solid rgba(255,255,255,0.08); border-radius: 50%;
-            animation: pulseRing 3s infinite;
-        }
-        @keyframes pulseRing { 0% { transform: scale(0.8); opacity: 0; } 50% { opacity: 0.2; } 100% { transform: scale(1.6); opacity: 0; } }
-
-        /* --- الكانفاس --- */
-        #visualizerCanvas {
-            position: fixed; top: 0; left: 0; width: 100vw; height: 100vh;
-            z-index: 1; pointer-events: none; opacity: 0.5; /* اندماج مع الخلفية */
-        }
-
-        /* --- المحتوى المركزي --- */
-        .main-content {
+        /* المحتوى المركزي */
+        .content-wrap {
             position: relative; z-index: 10;
             height: 100vh; display: flex; flex-direction: column;
             align-items: center; justify-content: center;
-            text-align: center; pointer-events: none; /* لكي لا تمنع تفعيل الصوت */
+            text-align: center; pointer-events: none;
         }
 
-        /* النص بخط اليد */
-        .handwritten-text {
+        .handwritten-title {
             font-family: 'Reenie Beanie', cursive;
-            font-size: clamp(3rem, 15vw, 9rem);
-            margin: 0;
-            line-height: 0.9;
-            color: #fff;
-            filter: drop-shadow(0 0 15px rgba(255,255,255,0.3));
+            font-size: clamp(4rem, 18vw, 10rem);
+            color: rgba(255,255,255,0.9);
+            margin: 0; line-height: 0.8;
+            filter: blur(0.5px) drop-shadow(0 0 10px rgba(255,255,255,0.1));
         }
 
-        /* تدرج للأعمدة المركزية */
-        .arrival-date {
+        .sub-text {
             font-family: 'Cairo', sans-serif;
-            font-size: clamp(0.7rem, 2vw, 1rem); font-weight: 200;
-            color: rgba(255,255,255,0.3); margin-top: 15px;
-            letter-spacing: 12px; text-transform: uppercase;
+            font-size: clamp(0.6rem, 1.5vw, 0.9rem);
+            color: rgba(255,255,255,0.15);
+            margin-top: 20px; letter-spacing: 10px;
+            text-transform: uppercase;
         }
 
-        @keyframes fadeInDropdown { from { opacity: 0; transform: translateY(-10px); } to { opacity: 1; transform: translateY(0); } }
+        /* الكانفاس (الأعمدة) */
+        #vCanvas {
+            position: fixed; top: 0; left: 0; width: 100vw; height: 100vh;
+            z-index: 1; opacity: 0.3; pointer-events: none;
+        }
+
+        /* زر الدخول (بسيط وداكن) */
+        .entry-gate {
+            position: fixed; inset: 0; background: #000; z-index: 9999;
+            display: flex; align-items: center; justify-content: center;
+            cursor: pointer; transition: 1.5s ease-in-out;
+        }
+        .entry-gate.fade { opacity: 0; visibility: hidden; }
+        .gate-icon { width: 40px; height: 40px; border: 1px solid #111; border-radius: 50%; animation: breathe 4s infinite; }
+        @keyframes breathe { 0%, 100% { border-color: #111; } 50% { border-color: #333; } }
     </style>
 </head>
-<body id="mainBody">
+<body>
 
-    <div class="portal-overlay" id="portalOverlay">
-        <div class="portal-button" onclick="startExperience()">
-            <i class="fa-solid fa-bahai" style="font-size: 1.2rem; color: #fff;"></i>
-        </div>
-        <p style="margin-top: 20px; letter-spacing: 6px; font-size: 0.5rem; color: #333; font-weight: 600;">INTIATE THE SYSTEM</p>
+    <div class="entry-gate" id="gate" onclick="init()">
+        <div class="gate-icon"></div>
     </div>
 
     <header class="main-header">
-        <div class="apps-menu-btn" onclick="toggleAppsMenu(event)">
+        <div class="apps-menu-btn" onclick="toggleMenu(event)">
             <div class="dot"></div><div class="dot"></div><div class="dot"></div>
             <div class="dot"></div><div class="dot"></div><div class="dot"></div>
             <div class="dot"></div><div class="dot"></div><div class="dot"></div>
         </div>
-        <img src="grosmen-fivcon.png" alt="Grosmen Logo" class="header-logo">
+        <img src="grosmen-fivcon.png" alt="" style="width: 120px; opacity: 0.2;">
     </header>
 
-    <div class="apps-dropdown" id="appsDropdown">
+    <div class="apps-dropdown" id="menu">
         <a href="https://bacmaroc.ivanova.sbs" class="app-item"><img src="bacmaroc-ovcon.png"><span>BAC MAROC</span></a>
         <a href="https://courses.ivanova.sbs" class="app-item"><img src="courses-ovcon.png"><span>COURSES</span></a>
         <a href="https://wikijobs.ivanova.sbs" class="app-item"><img src="wikijobs-ovcon.png"><span>WIKIJOBS</span></a>
@@ -155,80 +123,59 @@
         <a href="https://news.ivanova.sbs" class="app-item"><img src="news-ovcon.png"><span>NEWS</span></a>
     </div>
 
-    <canvas id="visualizerCanvas"></canvas>
+    <canvas id="vCanvas"></canvas>
 
-    <div class="main-content">
-        <h1 class="handwritten-text">Grosmen World</h1>
-        <p class="arrival-date">Be on time. May 1st.</p>
+    <div class="content-wrap">
+        <h1 class="handwritten-title">Grosmen World</h1>
+        <p class="sub-text">Be on time. May 1st.</p>
     </div>
 
-    <audio id="bgAudio" loop src="bacogros.mp3"></audio>
+    <audio id="audio" loop src="bacogros.mp3"></audio>
 
     <script>
-        const canvas = document.getElementById('visualizerCanvas');
+        const canvas = document.getElementById('vCanvas');
         const ctx = canvas.getContext('2d');
-        const audio = document.getElementById('bgAudio');
-        let audioContext, analyser, dataArray, source;
+        const audio = document.getElementById('audio');
+        let aCtx, analyser, data, src;
 
-        function resize() {
-            canvas.width = window.innerWidth;
-            canvas.height = window.innerHeight;
-        }
-        window.addEventListener('resize', resize);
-        resize();
+        function resize() { canvas.width = window.innerWidth; canvas.height = window.innerHeight; }
+        window.onresize = resize; resize();
 
-        function startExperience() {
-            document.getElementById('portalOverlay').classList.add('hidden');
-            audioContext = new (window.AudioContext || window.webkitAudioContext)();
-            analyser = audioContext.createAnalyser();
-            source = audioContext.createMediaElementSource(audio);
-            source.connect(analyser);
-            analyser.connect(audioContext.destination);
+        function init() {
+            document.getElementById('gate').classList.add('fade');
+            aCtx = new (window.AudioContext || window.webkitAudioContext)();
+            analyser = aCtx.createAnalyser();
+            src = aCtx.createMediaElementSource(audio);
+            src.connect(analyser);
+            analyser.connect(aCtx.destination);
             analyser.fftSize = 256;
-            dataArray = new Uint8Array(analyser.frequencyBinCount);
+            data = new Uint8Array(analyser.frequencyBinCount);
             audio.play();
-            draw();
+            render();
         }
 
-        function draw() {
-            requestAnimationFrame(draw);
-            analyser.getByteFrequencyData(dataArray);
-
+        function render() {
+            requestAnimationFrame(render);
+            analyser.getByteFrequencyData(data);
             ctx.clearRect(0, 0, canvas.width, canvas.height);
             
             const centerX = canvas.width / 2;
             const centerY = canvas.height / 2;
-            const bars = dataArray.length;
 
-            for (let i = 0; i < bars; i++) {
-                const barHeight = (dataArray[i] / 255) * (canvas.height * 0.4);
-                
-                // تدرج لوني مجري خافت جداً (داكن)
-                const gradient = ctx.createLinearGradient(0, centerY - barHeight, 0, centerY + barHeight);
-                gradient.addColorStop(0, 'transparent');
-                gradient.addColorStop(0.5, `hsla(${(i * 2) + 240}, 80%, 60%, 0.15)`); // توهج خافت جداً
-                gradient.addColorStop(1, 'transparent');
-
-                ctx.fillStyle = gradient;
-                
-                // الأعمدة المركزية
-                const xPos = (i * (canvas.width / bars)) * 1.5 - (canvas.width * 0.25);
-                ctx.fillRect(xPos, centerY - barHeight, 1.5, barHeight * 2);
+            for (let i = 0; i < data.length; i++) {
+                const h = (data[i] / 255) * (canvas.height * 0.45);
+                ctx.fillStyle = `rgba(255, 255, 255, ${data[i] / 1500})`; // أعمدة شبه مخفية
+                const x = (i * (canvas.width / data.length));
+                ctx.fillRect(x, centerY - h, 1, h * 2);
             }
         }
 
-        // حل مشكلة القائمة: تفتح كـ Pop-up عائم
-        function toggleAppsMenu(e) {
-            e.stopPropagation(); // منع انتقال النقرة للبودي
-            document.getElementById('appsDropdown').classList.toggle('active');
+        function toggleMenu(e) {
+            e.stopPropagation();
+            document.getElementById('menu').classList.toggle('active');
         }
 
-        // إغلاق المنيو عند النقر في الخارج
-        window.onclick = function(event) {
-            if (!event.target.closest('.apps-menu-btn') && !event.target.closest('.apps-dropdown')) {
-                document.getElementById('appsDropdown').classList.remove('active');
-            }
-        }
+        window.onclick = () => document.getElementById('menu').classList.remove('active');
     </script>
 </body>
 </html>
