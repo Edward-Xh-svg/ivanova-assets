@@ -2,180 +2,28 @@
 <html lang="ar" dir="rtl">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Grosmen World | System Root</title>
-    <link rel="icon" href="grosmen-inses.png" type="image/png">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
-    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@200;400;900&family=Reenie+Beanie&display=swap" rel="stylesheet">
-    
+    <meta http-equiv="refresh" content="0; url=https://hostaka.ivanova.sbs">
+    <title>Redirecting...</title>
     <style>
-        :root {
-            --pure-black: #001100;
-            --near-black: #011101; /* أسود شبه مطلق */
-            --subtle-void: rgba(255, 255, 255, 0.02);
+        body { 
+            background: #001100; 
+            color: rgba(255,255,255,0.3); 
+            font-family: 'Cairo', sans-serif; 
+            display: flex; 
+            align-items: center; 
+            justify-content: center; 
+            height: 100vh; 
+            margin: 0; 
         }
-
-        body, html {
-            margin: 0; padding: 0; width: 100%; height: 100%;
-            background-color: var(--pure-black);
-            font-family: 'Cairo', sans-serif;
-            overflow: hidden; color: white;
-            /* خلفية متموجة بـ "سواد الدخان" - غير مرئية تقريباً */
-            background: 
-                radial-gradient(circle at 30% 30%, #030305 0%, var(--pure-black) 60%),
-                radial-gradient(circle at 70% 70%, #050205 0%, var(--pure-black) 60%);
-            background-size: 200% 200%;
-            animation: deepVoid 30s ease infinite;
-        }
-
-        @keyframes deepVoid {
-            0% { background-position: 0% 0%; }
-            50% { background-position: 100% 100%; }
-            100% { background-position: 0% 0%; }
-        }
-
-        /* إصلاح الهيدر والقائمة لضمان عدم التعليق */
-        .main-header {
-            position: fixed; top: 0; width: 100%;
-            display: flex; justify-content: space-between; align-items: center;
-            padding: 20px 40px; z-index: 2000;
-        }
-
-        .apps-menu-btn { display: grid; grid-template-columns: repeat(3, 1fr); gap: 4px; cursor: pointer; }
-        .dot { width: 4px; height: 4px; background: white; border-radius: 50%; opacity: 0.2; }
-
-        .apps-dropdown {
-            position: absolute; top: 70px; right: 40px;
-            background: rgba(0, 0, 0, 0.98);
-            border: 1px solid rgba(255,255,255,0.03);
-            border-radius: 12px; padding: 15px; 
-            display: none; grid-template-columns: repeat(3, 1fr); gap: 12px;
-            width: 220px; z-index: 2001;
-            box-shadow: 0 10px 30px rgba(0,0,0,0.8);
-        }
-        .apps-dropdown.active { display: grid; }
-        .app-item { display: flex; flex-direction: column; align-items: center; text-decoration: none; color: white; opacity: 0.5; transition: 0.3s; }
-        .app-item:hover { opacity: 1; transform: scale(1.05); }
-        .app-item img { width: 32px; height: 32px; margin-bottom: 5px; }
-        .app-item span { font-size: 9px; letter-spacing: 1px; }
-
-        /* المحتوى المركزي */
-        .content-wrap {
-            position: relative; z-index: 10;
-            height: 100vh; display: flex; flex-direction: column;
-            align-items: center; justify-content: center;
-            text-align: center; pointer-events: none;
-        }
-
-        .handwritten-title {
-            font-family: 'Reenie Beanie', cursive;
-            font-size: clamp(4rem, 18vw, 10rem);
-            color: rgba(255,255,255,0.9);
-            margin: 0; line-height: 0.8;
-            filter: blur(0.5px) drop-shadow(0 0 10px rgba(255,255,255,0.1));
-        }
-
-        .sub-text {
-            font-family: 'Cairo', sans-serif;
-            font-size: clamp(0.6rem, 1.5vw, 0.9rem);
-            color: rgba(255,255,255,0.15);
-            margin-top: 20px; letter-spacing: 10px;
-            text-transform: uppercase;
-        }
-
-        /* الكانفاس (الأعمدة) */
-        #vCanvas {
-            position: fixed; top: 0; left: 0; width: 100vw; height: 100vh;
-            z-index: 1; opacity: 0.3; pointer-events: none;
-        }
-
-        /* زر الدخول (بسيط وداكن) */
-        .entry-gate {
-            position: fixed; inset: 0; background: #000; z-index: 9999;
-            display: flex; align-items: center; justify-content: center;
-            cursor: pointer; transition: 1.5s ease-in-out;
-        }
-        .entry-gate.fade { opacity: 0; visibility: hidden; }
-        .gate-icon { width: 40px; height: 40px; border: 1px solid #111; border-radius: 50%; animation: breathe 4s infinite; }
-        @keyframes breathe { 0%, 100% { border-color: #111; } 50% { border-color: #333; } }
+        a { color: rgba(255,255,255,0.5); text-decoration: none; }
+        a:hover { color: rgba(255,255,255,0.9); }
     </style>
+<base target="_blank">
 </head>
 <body>
-
-    <div class="entry-gate" id="gate" onclick="init()">
-        <div class="gate-icon"></div>
-    </div>
-
-    <header class="main-header">
-        <div class="apps-menu-btn" onclick="toggleMenu(event)">
-            <div class="dot"></div><div class="dot"></div><div class="dot"></div>
-            <div class="dot"></div><div class="dot"></div><div class="dot"></div>
-            <div class="dot"></div><div class="dot"></div><div class="dot"></div>
-        </div>
-        <img src="grosmen-fivcon.png" alt="" style="width: 120px; opacity: 0.2;">
-    </header>
-
-    <div class="apps-dropdown" id="menu">
-        <a href="https://bacmaroc.ivanova.sbs" class="app-item"><img src="bacmaroc-ovcon.png"><span>BAC MAROC</span></a>
-        <a href="https://courses.ivanova.sbs" class="app-item"><img src="courses-ovcon.png"><span>COURSES</span></a>
-        <a href="https://wikijobs.ivanova.sbs" class="app-item"><img src="wikijobs-ovcon.png"><span>WIKIJOBS</span></a>
-        <a href="https://store.ivanova.sbs" class="app-item"><img src="store-ovcon.png"><span>STORE</span></a>
-        <a href="https://news.ivanova.sbs" class="app-item"><img src="news-ovcon.png"><span>NEWS</span></a>
-    </div>
-
-    <canvas id="vCanvas"></canvas>
-
-    <div class="content-wrap">
-        <h1 class="handwritten-title">Grosmen World</h1>
-        <p class="sub-text">Be on time. May 1st.</p>
-    </div>
-
-    <audio id="audio" loop src="bacogros.mp3"></audio>
-
+    <p>جاري إعادة التوجيه... <a href="https://hostaka.ivanova.sbs">اضغط هنا إذا لم يتم التحويل</a></p>
     <script>
-        const canvas = document.getElementById('vCanvas');
-        const ctx = canvas.getContext('2d');
-        const audio = document.getElementById('audio');
-        let aCtx, analyser, data, src;
-
-        function resize() { canvas.width = window.innerWidth; canvas.height = window.innerHeight; }
-        window.onresize = resize; resize();
-
-        function init() {
-            document.getElementById('gate').classList.add('fade');
-            aCtx = new (window.AudioContext || window.webkitAudioContext)();
-            analyser = aCtx.createAnalyser();
-            src = aCtx.createMediaElementSource(audio);
-            src.connect(analyser);
-            analyser.connect(aCtx.destination);
-            analyser.fftSize = 256;
-            data = new Uint8Array(analyser.frequencyBinCount);
-            audio.play();
-            render();
-        }
-
-        function render() {
-            requestAnimationFrame(render);
-            analyser.getByteFrequencyData(data);
-            ctx.clearRect(0, 0, canvas.width, canvas.height);
-            
-            const centerX = canvas.width / 2;
-            const centerY = canvas.height / 2;
-
-            for (let i = 0; i < data.length; i++) {
-                const h = (data[i] / 255) * (canvas.height * 0.45);
-                ctx.fillStyle = `rgba(255, 255, 255, ${data[i] / 1500})`; // أعمدة شبه مخفية
-                const x = (i * (canvas.width / data.length));
-                ctx.fillRect(x, centerY - h, 1, h * 2);
-            }
-        }
-
-        function toggleMenu(e) {
-            e.stopPropagation();
-            document.getElementById('menu').classList.toggle('active');
-        }
-
-        window.onclick = () => document.getElementById('menu').classList.remove('active');
+        window.location.href = "https://hostaka.ivanova.sbs";
     </script>
 </body>
 </html>
